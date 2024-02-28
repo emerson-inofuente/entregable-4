@@ -1,0 +1,62 @@
+.pokedex {
+    padding-bottom: 25px;
+    font-size: 20px;
+}
+.poke__header {
+    display: flex;
+    flex-direction: column;
+    margin: 70px;
+    gap: 30px;
+    font-size: 40px;
+}
+
+.poke__header h3 {
+    text-align: center;
+}
+
+.poke__header div {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.poke__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.capturar-button {
+    font-size: 20px; 
+    background-color: #2fe9b2; 
+    padding: 10px 20px;
+    border: none; 
+    border-radius: 5px; 
+}
+
+.Bienvenidapok {
+    display: flex;
+    flex-direction: column;
+    margin: 70px;
+    gap: 30px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.Comenzar-button {
+    font-size: 20px;
+    background-color: #eeb60d; 
+    color: rgb(13, 44, 7); 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 20px;
+}
