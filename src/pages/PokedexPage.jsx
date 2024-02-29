@@ -5,9 +5,11 @@ import useFetch from '../hooks/useFetch';
 import PokeCard from '../components/pokedexPage/PokeCard';
 import SelectType from '../components/pokedexPage/SelectType';
 import './styles/pokedexPage.css';
+import Pagination from '../components/pokedexPage/Pagination';
 
 const PokedexPage = () => {
 
+    const [page, setPage] = useState(1);
     const [selectValue, setselectValue] = useState('allPokemons');
     const trainerName = useSelector(store => store.trainerName);
     const pokemonName = useSelector(store => store.pokemonName);
@@ -15,8 +17,8 @@ const PokedexPage = () => {
     const [ pokemons, getPokemons, getPerType] = useFetch();
 
     useEffect(() => {
-        if (selectValue==='allpokemons') {
-            const url = 'https://pokeapi.co/api/v2/pokemon/?limit=30';
+        if (selectValue==='allPokemons') {
+            const url = 'https://pokeapi.co/api/v2/pokemon/?limit=1305';
             getPokemons(url);
         } else {
             getPerType(selectValue);
@@ -38,7 +40,14 @@ const PokedexPage = () => {
             return pokemons?.results;
         }
     }
-    
+    const quantity = 8;
+    const total = cbFilter() && Math.ceil(cbFilter().length / quantity);
+    const pagination = () => {
+        const end = quantity * page;
+        const start = end - quantity;
+        return cbFilter()?.slice(start, end);
+    }
+
   return (
     <div className='pokedex'>
         <section className='poke__header'>
@@ -53,11 +62,16 @@ const PokedexPage = () => {
                 />
             </div>
         </section>
+        <Pagination
+        setPage={setPage}
+        page={page}
+        total={total}
+        />
         <section
         className='poke__container'
         >
             {
-                cbFilter()?.map(poke => (
+                pagination()?.map(poke => (
                     <PokeCard
                     key={poke.url}
                     url={poke.url}
@@ -65,6 +79,11 @@ const PokedexPage = () => {
                 ))
             }
         </section>
+        <Pagination
+        setPage={setPage}
+        page={page}
+        total={total}
+        />
     </div>
   )
 }
